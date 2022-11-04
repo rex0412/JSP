@@ -31,9 +31,9 @@ public class JDBConnect {
 		}
 	}
 	
-	public JDBConnect(String Driver, String url, String id, String pw) {
+	public JDBConnect(String driver, String url, String id, String pw) {
 		try {
-			Class.forName(Driver);
+			Class.forName(driver);
 			conn = DriverManager.getConnection(url, id, pw);
 			System.out.println("DB 연결 완료(생성자 버전2)"); 
 			
