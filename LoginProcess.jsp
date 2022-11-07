@@ -22,7 +22,7 @@
 			String oraclePw = application.getInitParameter("OraclePw");
 			
 			MemberDAO dao = new MemberDAO(oracleDriver, oracleUrl, oracleId, oraclePw);
-			MemberDTO2 dto =  dao.getMemberDTO(userId, userPw);
+			MemberDTO2 dto =  dao.login(userId, userPw);
 			dao.close();
 			
 			if (dto.getId() == null) {

@@ -36,8 +36,9 @@
 	%>
 		<%= session.getAttribute("UserName") %> 회원님, 환영합니다! <br>
 		<a href="Logout.jsp">[로그아웃]</a>
+		<a href="../day11/DeleteUser.jsp">[회원탈퇴]</a>
 	<%		
 		}
-	%>
+	%> 
 </body>
 </html>
