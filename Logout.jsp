@@ -4,5 +4,5 @@
 	<%
 		session.invalidate();
 	
-		response.sendRedirect("LoginForm.jsp");
+		response.sendRedirect("../day10/LoginForm.jsp");
 	%>

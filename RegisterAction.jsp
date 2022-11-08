@@ -26,7 +26,6 @@
 	while (r.next()) {
 		request.getRequestDispatcher("Register.jsp?loginErr=1").forward(request, response);
 	}
-
 	String sql2 = "INSERT INTO member VALUES(?, ?, ?, sysdate)";
 
 	PreparedStatement ps = jdbc.conn.prepareStatement(sql2);
@@ -34,13 +33,13 @@
 	ps.setString(2, pw);
 	ps.setString(3, name);
 
-	int result = ps2.executeUpdate();
+	int result = ps.executeUpdate();
 
 	System.out.println(result + "행이 DB에 입력되었습니다.");
 	jdbc.close();
 
 	session.setAttribute("user_name", name);
-	response.sendRedirect("Welcome.jsp");
+	response.sendRedirect("../day10/LoginForm.jsp");
 	%>
 </body>
 </html>

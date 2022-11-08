@@ -24,6 +24,7 @@
 		
 		int isDeleted = dao.deleteUser(uid, upass);
 		
+		dao.close();
 		if (isDeleted == 1) {
 			// ver1. 하나 하나 속성 삭제
 			session.removeAttribute("UserId");
