@@ -6,22 +6,23 @@
 <%@ page import="java.util.HashMap"%>
 <%@page import="java.util.List"%>
 
+
 <%
-	BoardDAO dao = new BoardDAO(application); // DB에 연결
-	
-	String searchField = request.getParameter("searchField");
-	String searchWord = request.getParameter("searchWord");
-	
-	//      자료형        변수명 = new 생성자();
-	Map<String, Object> param = new HashMap<String, Object>();
-	
-	if (searchWord != null) {
-		param.put("searchField", searchField);
-		param.put("searchWord", searchWord);
-	}
-	
-	int totalCount = dao.selectCount(param);
-	List<BoardDTO> boardLists = dao.selectList(param);
+BoardDAO dao = new BoardDAO(application); // DB에 연결
+
+String searchField = request.getParameter("searchField");
+String searchWord = request.getParameter("searchWord");
+
+//      자료형        변수명 = new 생성자();
+Map<String, Object> param = new HashMap<String, Object>();
+
+if (searchWord != null) {
+	param.put("searchField", searchField);
+	param.put("searchWord", searchWord);
+}
+
+int totalCount = dao.selectCount(param);
+List<BoardDTO> boardLists = dao.selectList(param);
 %>
 
 <!DOCTYPE html>
@@ -31,6 +32,7 @@
 <title>회원제 게시판</title>
 </head>
 <body>
+	<jsp:include page="../Common/Link.jsp"></jsp:include>
 	<h2>목록 보기(List)</h2>
 
 	<form method="get">
@@ -39,10 +41,8 @@
 				<td align="center"><select name="searchField">
 						<option value="title">제목</option>
 						<option value="content">내용</option>
-				</select>
-				<input type="text" name="searchField">
-				<input type="submit" value="검색하기">
-				</td>
+				</select> <input type="text" name="searchField"> <input type="submit"
+					value="검색하기"></td>
 			</tr>
 		</table>
 	</form>
@@ -57,7 +57,7 @@
 		</tr>
 
 		<%
-			if (boardLists.isEmpty()) {
+		if (boardLists.isEmpty()) {
 		%>
 
 		<tr>
@@ -65,25 +65,32 @@
 		</tr>
 
 		<%
-			} else {
-				
-			int virtualNum = 0;
-			for (BoardDTO dto : boardLists) {
-				virtualNum = totalCount--;
+		} else {
+
+		int virtualNum = 0;
+		for (BoardDTO dto : boardLists) {
+			virtualNum = totalCount--;
 		%>
 
 		<tr align="center">
-			<td><a href=""><%= virtualNum %></a></td>
-			<td><%= dto.getTitle() %></td>
-			<td><%= dto.getId() %></td>
-			<td><%= dto.getVisitcount() %></td>
-			<td><%= dto.getPostdate() %></td>
+			<td><%=virtualNum%></td>
+			<td><a href="View.jsp?num=<%=dto.getNum()%>"><%=dto.getTitle()%></a>
+			</td>
+			<td><%=dto.getId()%></td>
+			<td><%=dto.getVisitcount()%></td>
+			<td><%=dto.getPostdate()%></td>
 		</tr>
 
 		<%
-			}
-		   }
+		}
+		}
 		%>
+	</table>
+
+	<table border="1" width="100%">
+		<tr align="right">
+			<td>
+				<button type="button" onClick="location.href='Write.jsp';">글쓰기</button>
 	</table>
 </body>
 </html>
