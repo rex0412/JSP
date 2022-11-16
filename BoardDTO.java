@@ -8,6 +8,8 @@ public class BoardDTO {
 	private java.sql.Date postdate;
 	private String visitcount;
 	private String name; // member table의 name을 가져올 데이터! (Board에는 존재X)
+	private int replyCnt; // reply table의 댓글 수를 가져올 데이터!
+
 
 	public String getNum() {
 		return num;
@@ -64,4 +66,14 @@ public class BoardDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+	
+	
 }

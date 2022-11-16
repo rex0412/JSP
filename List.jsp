@@ -74,7 +74,9 @@ List<BoardDTO> boardLists = dao.selectList(param);
 
 		<tr align="center">
 			<td><%=virtualNum%></td>
-			<td><a href="View.jsp?num=<%=dto.getNum()%>"><%=dto.getTitle()%></a>
+			<td><a href="View.jsp?num=<%=dto.getNum() %>"><%= dto.getTitle()%>
+<%=dto.getReplyCnt()==0 ? "" : "("+dto.getReplyCnt()+")" %>
+</a>
 			</td>
 			<td><%=dto.getId()%></td>
 			<td><%=dto.getVisitcount()%></td>

@@ -75,7 +75,7 @@ public class BoardDAO extends JDBConnect {
 	public List<BoardDTO> selectList(Map<String, Object> map) {
 		List<BoardDTO> bbs = new Vector<BoardDTO>();
 
-		String query = "SELECT * FROM board";
+		String query = "SELECT board.*, (SELECT count(*) from reply where num=board.num) rCount FROM board";
 
 		if (map.get("searchWord") != null) {
 			query += " WHERE " + map.get("searchField") + " " + " LIKE '%" + map.get("searchWord" + "%'");
@@ -97,6 +97,7 @@ public class BoardDAO extends JDBConnect {
 				dto.setPostdate(rs.getDate("postdate"));
 				dto.setId(rs.getString("id"));
 				dto.setVisitcount(rs.getString("visitcount"));
+				dto.setReplyCnt(rs.getInt("rCount"));
 
 				bbs.add(dto);
 			}
